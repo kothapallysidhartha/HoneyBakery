@@ -26,7 +26,7 @@ urlpatterns = [
     path("image_upload",views.image_upload,name="image_upload"),
     path('book_cake/<uuid:cake_id>/', views.book_cake, name='book_cake'),
     # path('thank_you/<uuid:booking_id>/', views.thank_you, name='thank_you'),
-    path('thank_you/<uuid:booking_id>/', views.thank_you, name='thank_you'),
+    path('thank_you/', views.thank_you, name='thank_you'),
 
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

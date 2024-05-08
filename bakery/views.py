@@ -7,7 +7,6 @@ def index(request):
     return render(request, "index.html", {'cakes': cakes})
 
 
-
 def image_upload(request):
     if request.method == 'POST':
         cake_name = request.POST.get('cake_name')
@@ -50,14 +49,14 @@ def book_cake(request, cake_id):
         # Redirect to a thank you page or any other page
         # return redirect('thank_you')
         # return redirect('thank_you', booking_id=new_booking.id)
-        return redirect('thank_you', booking_id=new_booking.id)
+        return redirect('thank_you')
     
     else:
         # Retrieve the selected cake for display
         cake = Cake.objects.get(pk=cake_id)
         return render(request, 'cake_booking.html', {'cake': cake})
 
-def thank_you(request, booking_id):
-    # Retrieve the booking information
-    booking = Booking.objects.get(pk=booking_id)
-    return render(request, 'thank_you.html', {'cake_booking': booking})
+def thank_you(request):
+    # Retrieve the latest booking
+    latest_booking = Booking.objects.latest('id')
+    return render(request, 'thank_you.html', {'booking': latest_booking})

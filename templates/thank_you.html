@@ -4,51 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You</title>
-    <!-- Add CSS for styling -->
     <style>
-        /* Style for the invoice */
+        /* Reset default margin and padding */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container for the invoice */
         .invoice {
-            border: 1px solid #ccc;
+            max-width: 600px; /* Adjust as needed */
+            margin: 0 auto;
             padding: 20px;
-            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
         }
+
+        /* Invoice header */
         .invoice h2 {
-            margin-top: 0;
             font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
         }
+
+        /* Invoice details */
         .invoice p {
-            margin: 5px 0;
+            margin: 10px 0;
         }
-        /* Style for the print button */
-        .print-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
+
+        /* Print button */
+        .print-button {
+            display: block;
+            width: 100%;
+            max-width: 200px; /* Adjust as needed */
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
             border: none;
+            border-radius: 5px;
+            text-align: center;
             cursor: pointer;
-            border-radius: 4px;
-            float: right;
+        }
+
+        /* Print button hover effect */
+        .print-button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>Thank You</h1>
-    <p>Your cake has been booked successfully.</p>
-
+    <center>
+        <h1>Thank You</h1>
+        <p>Your cake has been booked successfully.</p>
+    </center>
+    
     <!-- Invoice section -->
     <div class="invoice">
         <h2>Invoice</h2>
         <p>Shop Name: Honey Bakery</p>
-        <p>Mobile Number: 1234567890</p>
         <p>Shop Address: 123, Baker Street, City</p>
-        <p>Customer Name: {{ cake_booking.customer_name }}</p>
-        <p>Mobile Number: {{ cake_booking.mobile_number }}</p>
-        <p>Cake Name: {{ cake_booking.cake.cake_name }}</p>
-        <p>Cake Price: &#8377;{{ cake_booking.cake.cake_price }}</p>
-        <p>Payment Mode: {{ cake_booking.payment_mode }}</p>
+        <p>Customer Name: {{ booking.customer_name }}</p>
+        <p>Mobile Number: {{ booking.mobile_number }}</p>
+        <p>Cake Name: {{ booking.cake.cake_name }}</p>
+        <p>Cake Price: &#8377;{{ booking.total_amount }}</p>
+        <p>Payment Mode: {{ booking.payment_mode }}</p>
     </div>
 
     <!-- Print button -->
-    <button class="print-btn" onclick="window.print()">Print Invoice</button>
+    <button class="print-button" onclick="window.print()">Print Invoice</button>
 </body>
 </html>
+
