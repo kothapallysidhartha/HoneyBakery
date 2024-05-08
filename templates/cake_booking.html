@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Booking</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .small-image {
+    max-width: 200px;
+    max-height: 200px;
+}
+</style>
+<body>
+    {% include 'navbar.html' %}
+
+   <div class="container">
+        <h1 class="mt-5">Cake Booking | <a href="{% url 'index' %}" class="btn btn-warning">Home</a></h1>
+        <form method="post" action="{% url 'book_cake' cake_id=cake.cake_id %}">
+             {% csrf_token %}
+           <div class="form-group">
+    <label for="selected_cake">Selected Cake:</label>
+    <img src="{{ cake.cake_image.url }}" alt="{{ cake.cake_name }}" class="img-fluid small-image">
+    <br>
+    <p>Cake Price: &#8377; {{ cake.cake_price }} /-</p>
+</div>
+            <div class="form-group">
+                <label for="customer_name">Your Name:</label>
+                <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile_number">Mobile Number:</label>
+                <input type="tel" class="form-control" id="mobile_number" name="mobile_number" required>
+            </div>
+            <div class="form-group">
+                <label for="payment_mode">Payment Mode:</label>
+                <select class="form-control" id="payment_mode" name="payment_mode" required>
+                    <option value="Cash">Cash</option>
+                    <option value="PhonePe">PhonePe</option>
+                    <option value="Google Pay">Google Pay</option>
+                </select>
+            </div>
+            
+            <center>
+                <button type="submit" class="btn btn-primary">Book Now</button>
+            </center>
+            
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

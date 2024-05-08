@@ -16,7 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from bakery import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path("",views.index,name="index"),
+    path("image_upload",views.image_upload,name="image_upload"),
+    path('book_cake/<uuid:cake_id>/', views.book_cake, name='book_cake'),
+    # path('thank_you/<uuid:booking_id>/', views.thank_you, name='thank_you'),
+    path('thank_you/<uuid:booking_id>/', views.thank_you, name='thank_you'),
+
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
